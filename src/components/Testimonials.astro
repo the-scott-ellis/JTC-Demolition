@@ -1,0 +1,100 @@
+---
+interface Testimonial {
+  quote: string;
+  author: string;
+  location: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Customers Say</h2>
+    <div class="testimonials-grid">
+      {testimonials.map((testimonial) => (
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"{testimonial.quote}"</p>
+          <p class="author">
+            <strong>{testimonial.author}</strong>
+            <br />
+            <span class="location">{testimonial.location}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .testimonials h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--gray-800);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    background: var(--gray-100);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color);
+  }
+
+  .stars {
+    color: #fbbf24;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  .author {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .author strong {
+    color: var(--gray-800);
+  }
+
+  .location {
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials {
+      padding: 3rem 0;
+    }
+
+    .testimonials h2 {
+      font-size: 2rem;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

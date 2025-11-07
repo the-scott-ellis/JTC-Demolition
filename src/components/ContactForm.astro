@@ -1,0 +1,158 @@
+---
+interface Props {
+  city: string;
+  state: string;
+}
+
+const { city, state } = Astro.props;
+---
+
+<section class="contact-form" id="contact">
+  <div class="container">
+    <h2>Get Your Free Quote</h2>
+    <p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+
+    <form action="https://api.web3forms.com/submit" method="POST" class="form">
+      <!-- Replace with your actual Web3Forms access key -->
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+      <input type="hidden" name="subject" value={`New Quote Request - ${city}, ${state}`}>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone *</label>
+          <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Type *</label>
+          <select id="service" name="service" required>
+            <option value="">Select Service</option>
+            <option value="residential">Residential Junk Removal</option>
+            <option value="commercial">Commercial Cleanout</option>
+            <option value="furniture">Furniture Removal</option>
+            <option value="appliance">Appliance Disposal</option>
+            <option value="estate">Estate Cleanout</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tell us about what needs to be removed..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-submit">Get Free Quote</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact-form {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .contact-form h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  .form-subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+    color: #6b7280;
+  }
+
+  .form {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--gray-800);
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 0.75rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .btn-submit:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 3rem 0;
+    }
+
+    .contact-form h2 {
+      font-size: 2rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

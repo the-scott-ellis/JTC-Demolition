@@ -1,0 +1,58 @@
+---
+interface Props {
+  city: string;
+  state: string;
+  phone: string;
+  email: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+  };
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  services: string[];
+}
+
+const { city, state, phone, email, address, coordinates, services } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `Junk Removal - ${city}, ${state}`,
+  "description": `Professional junk removal service in ${city}, ${state}. Fast, affordable, and eco-friendly.`,
+  "url": Astro.site,
+  "telephone": phone,
+  "email": email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": address.street,
+    "addressLocality": address.city,
+    "addressRegion": address.state,
+    "postalCode": address.zip,
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": coordinates.lat,
+    "longitude": coordinates.lng
+  },
+  "priceRange": "$$",
+  "openingHours": "Mo-Su 07:00-19:00",
+  "areaServed": {
+    "@type": "City",
+    "name": city
+  },
+  "serviceType": services,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127"
+  }
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

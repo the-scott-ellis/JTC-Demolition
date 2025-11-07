@@ -1,0 +1,129 @@
+---
+interface Props {
+  city: string;
+  state: string;
+  phone: string;
+}
+
+const { city, state, phone } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Professional Junk Removal in {city}, {state}</h1>
+      <p class="hero-subtitle">Fast, Affordable & Eco-Friendly Junk Removal Services</p>
+      <div class="hero-features">
+        <span>✓ Same-Day Service Available</span>
+        <span>✓ Licensed & Insured</span>
+        <span>✓ Upfront Pricing</span>
+      </div>
+      <div class="hero-cta">
+        <a href={`tel:${phone.replace(/\D/g, '')}`} class="btn btn-primary">
+          Call Now: {phone}
+        </a>
+        <a href="#contact" class="btn btn-secondary">Get Free Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 0;
+    }
+
+    .hero h1 {
+      font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-features {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,262 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const locations = await getCollection('locations');
+---
+
+<Layout
+  title="Professional Junk Removal Services | Fast & Affordable"
+  description="Professional junk removal services in your area. Same-day service available. Licensed, insured, and eco-friendly. Get your free quote today!"
+>
+  <section class="hero">
+    <div class="container">
+      <h1>Professional Junk Removal Services</h1>
+      <p class="subtitle">Fast, Affordable & Eco-Friendly</p>
+      <div class="features">
+        <span>✓ Same-Day Service</span>
+        <span>✓ Licensed & Insured</span>
+        <span>✓ Upfront Pricing</span>
+        <span>✓ Eco-Friendly Disposal</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="locations">
+    <div class="container">
+      <h2>Service Areas</h2>
+      <p class="intro">Select your location to learn more about our services in your area:</p>
+      <div class="locations-grid">
+        {locations.map((location) => (
+          <a href={`/locations/${location.slug}`} class="location-card">
+            <h3>{location.data.city}, {location.data.stateCode}</h3>
+            <p>{location.data.serviceArea}</p>
+            <p class="phone">{location.data.phone}</p>
+            <span class="arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <h2>Why Choose Us?</h2>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <h3>Fast Service</h3>
+          <p>Same-day and next-day appointments available in most areas</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">♻️</div>
+          <h3>Eco-Friendly</h3>
+          <p>We recycle and donate items whenever possible</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">💰</div>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden fees. You know the cost before we start</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">✅</div>
+          <h3>Licensed & Insured</h3>
+          <p>Fully licensed and insured for your peace of mind</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; {new Date().getFullYear()} Junk Removal Services. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.125rem;
+  }
+
+  .locations {
+    padding: 4rem 0;
+    background: var(--gray-100);
+  }
+
+  .locations h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+    color: #6b7280;
+  }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .location-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+  }
+
+  .location-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .location-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .location-card p {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+  }
+
+  .phone {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+
+  .arrow {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  .about {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .about h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .benefit {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+  }
+
+  .benefit p {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .footer {
+    background: var(--gray-800);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  .footer p {
+    color: #9ca3af;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 0;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+    }
+
+    .features {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .locations {
+      padding: 3rem 0;
+    }
+
+    .locations h2 {
+      font-size: 2rem;
+    }
+
+    .locations-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about {
+      padding: 3rem 0;
+    }
+
+    .about h2 {
+      font-size: 2rem;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
