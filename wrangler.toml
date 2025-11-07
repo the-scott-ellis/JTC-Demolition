@@ -3,9 +3,6 @@ compatibility_date = "2024-01-01"
 
 pages_build_output_dir = "dist"
 
-[site]
-bucket = "./dist"
-
 # Environment variables (add your Web3Forms API key here)
 [vars]
 # EXAMPLE: WEB3FORMS_KEY = "your-key-here"
